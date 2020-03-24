@@ -1,27 +1,27 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: mavenweb
+  name: boradtest
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: mavenweb
+        app: boradtest
     spec:
       containers:
-      - name: mavenweb
-        image: nhjcontainreg.azurecr.io/mavenweb:#{Build.BuildId}#
+      - name: boradtest
+        image: nhjcontainreg.azurecr.io/boradtest:#{Build.BuildId}#
         ports:
         - containerPort: 8089
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mavenweb
+  name: boradtest
 spec:
   type: LoadBalancer
   ports:
   - port: 8089
   selector:
-    app: mavenweb
+    app: boradtest
